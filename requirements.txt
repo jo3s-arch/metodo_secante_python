@@ -1,0 +1,6 @@
+customtkinter
+matplotlib
+sympy
+pandas
+openpyxl
+numpy

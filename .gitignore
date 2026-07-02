@@ -1,0 +1,23 @@
+env/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+.env
+venv/
+ENV/
+env.bak/
+.idea/
+.vscode/
+.DS_Store
+
+# Logs and outputs
+*.log
+outputs/
+
+# Excel outputs
+*.xlsx
+
+# Virtual environment
+env/
