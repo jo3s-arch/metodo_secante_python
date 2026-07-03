@@ -13,7 +13,20 @@ class Grafica(ctk.CTkFrame):
         self.fig = Figure(figsize=(5,3))
         self.ax = self.fig.add_subplot(111)
         self.canvas = FigureCanvasTkAgg(self.fig, master=self)
-        self.canvas.get_tk_widget().pack(fill="both", expand=True)
+        self.widget = self.canvas.get_tk_widget()
+        self.widget.pack(fill="both", expand=True)
+        # Bind resize to update figure size
+        self.bind("<Configure>", self._on_resize)
+
+    def _on_resize(self, _event) -> None:
+        try:
+            w = self.winfo_width() / 100
+            h = self.winfo_height() / 100
+            if w > 0 and h > 0:
+                self.fig.set_size_inches(max(3, w), max(2, h))
+                self.canvas.draw_idle()
+        except Exception:
+            pass
 
     def plot_function(self, f: Callable[[float], float], raiz: Optional[float]=None) -> None:
         x = np.linspace(-10,10,400)
