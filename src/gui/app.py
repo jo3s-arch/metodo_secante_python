@@ -122,7 +122,13 @@ class SecanteApp(ctk.CTk):
         # Adjust padding for frames
         pad = int(8 * scale)
         for f in (self.frame_config, self.frame_result, self.frame_bottom):
-            f.configure(padx=pad, pady=pad)
+            try:
+                f.grid_configure(padx=pad, pady=pad)
+            except Exception:
+                try:
+                    f.pack_configure(padx=pad, pady=pad)
+                except Exception:
+                    pass
 
     def _crear_entradas(self) -> None:
         frame_inputs = ctk.CTkFrame(self.frame_config)
